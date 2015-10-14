@@ -8,8 +8,17 @@
 
     vm.register = register;
 
+    activate();
+
     function register() {
       Authentication.register(vm.email, vm.password, vm.username);
+    }
+
+    function activate() {
+      // If the user is authenticated, they should not be here.
+      if (Authentication.isAuthenticated()) {
+        $location.url('/');
+      }
     }
   }
 
