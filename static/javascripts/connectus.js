@@ -6,7 +6,8 @@
       'connectus.routes',
       'connectus.authentication',
       'connectus.config',
-      'connectus.layout'
+      'connectus.layout',
+      'connectus.posts'
     ])
     .run(run);
 
