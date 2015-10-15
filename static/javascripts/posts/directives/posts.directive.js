@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('connectus.posts.directives', [])
+    .module('connectus.posts.directives', ['ngDialog'])
     .directive('posts', posts);
 
   function posts() {
