@@ -1,7 +1,3 @@
-/**
- * PostsController
- * @namespace thinkster.posts.controllers
- */
 (function () {
   'use strict';
 
@@ -11,9 +7,6 @@
 
   PostsController.$inject = ['$scope'];
 
-  /**
-   * @namespace PostsController
-   */
   function PostsController($scope) {
     var vm = this;
 
@@ -22,24 +15,11 @@
     activate();
 
 
-    /**
-     * @name activate
-     * @desc Actions to be performed when this controller is instantiated
-     * @memberOf thinkster.posts.controllers.PostsController
-     */
     function activate() {
-      console.log("POSTS CONTROLLER", vm);
-      $scope.$watchCollection(function () { console.log("WATCH COLLECTION", $scope.posts); return $scope.posts; }, render);
+      $scope.$watchCollection(function () { return $scope.posts; }, render);
       $scope.$watch(function () { return $(window).width(); }, render);
     }
     
-
-    /**
-     * @name calculateNumberOfColumns
-     * @desc Calculate number of columns based on screen width
-     * @returns {Number} The number of columns containing Posts
-     * @memberOf thinkster.posts.controllers.PostsControllers
-     */
     function calculateNumberOfColumns() {
       var width = $(window).width();
 
@@ -54,24 +34,11 @@
       }
     }
 
-
-    /**
-     * @name approximateShortestColumn
-     * @desc An algorithm for approximating which column is shortest
-     * @returns The index of the shortest column
-     * @memberOf thinkster.posts.controllers.PostsController
-     */
     function approximateShortestColumn() {
       var scores = vm.columns.map(columnMapFn);
 
       return scores.indexOf(Math.min.apply(this, scores));
 
-      
-      /**
-       * @name columnMapFn
-       * @desc A map function for scoring column heights
-       * @returns The approximately normalized height of a given column
-       */
       function columnMapFn(column) {
         var lengths = column.map(function (element) {
           return element.content.length;
@@ -80,31 +47,12 @@
         return lengths.reduce(sum, 0) * column.length;
       }
 
-
-      /**
-       * @name sum
-       * @desc Sums two numbers
-       * @params {Number} m The first number to be summed
-       * @params {Number} n The second number to be summed
-       * @returns The sum of two numbers
-       */
       function sum(m, n) {
         return m + n;
       }
     }
 
-
-    /**
-     * @name render
-     * @desc Renders Posts into columns of approximately equal height
-     * @param {Array} current The current value of `vm.posts`
-     * @param {Array} original The value of `vm.posts` before it was updated
-     * @memberOf thinkster.posts.controllers.PostsController
-     */
     function render(current, original) {
-      console.log("RENDER!!!");
-      console.log("current", current);
-      console.log("original", original);
       if (current !== original) {
         vm.columns = [];
 
