@@ -8,6 +8,7 @@
       'connectus.config',
       'connectus.layout',
       'connectus.utils',
+      'connectus.profiles',
       'connectus.posts'
     ])
     .run(run);
